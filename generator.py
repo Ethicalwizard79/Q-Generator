@@ -4,7 +4,7 @@ import groq
 import re
 
 # Initialize Groq Client - REPLACE WITH YOUR ACTUAL API KEY
-api_key = "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"
+api_key = "Your_groq_api"
 client = groq.Client(api_key=api_key)
 
 def generate_mcq(category, difficulty, num_questions):
