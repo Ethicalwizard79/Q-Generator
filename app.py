@@ -8,7 +8,7 @@ app.secret_key = 'your-secret-key-123'  # Change for production
 app.static_folder = 'static'
 
 # Initialize Groq Client
-groq_client = groq.Client(api_key="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")
+groq_client = groq.Client(api_key="YOUR_GROQ_API_KEY")
 
 def generate_mcq(category, difficulty, num_questions):
     prompt = f"""SYSTEM ROLE: You are a strict multiple-choice question generator with exceptional technical accuracy. 
