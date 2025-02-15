@@ -14,7 +14,7 @@ pip install -r requirements.txt
 
 cd ../fastapi-app
 pip install -r requirements.txt
-
+```
 
 running applications:
 python app.py
