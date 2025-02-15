@@ -66,11 +66,12 @@ body {
 }
 
 /* Button Styling */
-.btn {
+.btn ,.submit{
     background: var(--gold-primary);
     color: var(--primary-black);
-    padding: 12px 25px;
+    padding: 12px 12px;
     border: none;
+    margin: 30px;
     border-radius: 8px;
     font-weight: 600;
     text-transform: uppercase;
@@ -78,6 +79,13 @@ body {
     cursor: pointer;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+
+
+.download-section{
+    margin-top: 40px;
+}
+
+
 
 .btn:hover {
     background: var(--gold-highlight);
