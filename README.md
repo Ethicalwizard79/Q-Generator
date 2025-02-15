@@ -9,6 +9,7 @@ A combined Flask web application and FastAPI service for generating and managing
 3. Install dependencies:
 
 ```bash
+#IN Q-Generator Directory itself
 pip install -r requirements.txt
 
 cd ../fastapi-app
