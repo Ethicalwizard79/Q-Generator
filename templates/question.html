@@ -1,0 +1,54 @@
+<!-- templates/question.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Question {{ question_num }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script>
+        function confirmSubmit() {
+            // Only show the prompt when submitting
+            if (document.activeElement.name === 'submit' && {{ show_submit_prompt|lower }}) {
+                return confirm("Are you sure you want to submit the test from the first question?");
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="progress">
+            Question {{ question_num }} of {{ total_questions }}
+        </div>
+
+        <form method="POST" onsubmit="return confirmSubmit()">
+            <div class="question-card">
+                <h3>{{ question.question }}</h3>
+                {% for option in question.options %}
+                    {% set option_letter = ['a','b','c','d'][loop.index0] %}
+                    <label class="option">
+                        <input type="radio" name="answer"
+                               value="{{ option_letter }}"
+                               {% if answers.get(current_question|string, '') == option_letter %}checked{% endif %}>
+                        {{ option_letter }}) {{ option }}
+                    </label>
+                {% endfor %}
+            </div>
+
+            <div class="navigation">
+                {% if question_num > 1 %}
+                    <button type="submit" name="prev" class="btn">Previous</button>
+                {% endif %}
+
+                {% if question_num < total_questions %}
+                    <button type="submit" name="next" class="btn">Next</button>
+                {% else %}
+                    <button type="submit" name="submit" class="btn submit-btn">Submit Test</button>
+                {% endif %}
+               
+                  <button type="submit" name="submit" class="btn submit-btn">Submit Test</button>
+                
+            </div>
+        </form>
+    </div>
+</body>
+</html>

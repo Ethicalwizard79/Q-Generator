@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MCQ Test Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Generate New Test</h1>
+        <form method="POST">
+            <div class="form-group">
+                <label>Category:</label>
+                <select name="category" required>
+                    <option value="Numerical">Numerical</option>
+                    <option value="Logical Reasoning">Logical Reasoning</option>
+                    <option value="Code">Code</option>
+                    <option value="Verbal">Verbal</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Difficulty:</label>
+                <select name="difficulty" required>
+                    <option value="Beginner-level">Beginner</option>
+                    <option value="Mid-level">Intermediate</option>
+                    <option value="Hard-level">Advanced</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Number of Questions:</label>
+                <select name="num_questions" required>
+                    <option>10</option>
+                    <option>20</option>
+                    <option>30</option>
+                    <option>40</option>
+                    <option>50</option>
+                </select>
+            </div>
+            
+            <button type="submit">Generate Test</button>
+        </form>
+    </div>
+</body>
+</html>

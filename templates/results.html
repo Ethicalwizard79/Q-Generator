@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Test Results</h1>
+        <div class="score">
+            Your Score: {{ score }}/{{ total }}
+        </div>
+        
+        <div class="results">
+            {% for result in results %}
+                <div class="result-card {% if result.is_correct %}correct{% else %}incorrect{% endif %}">
+                    <h3>Question {{ loop.index }}</h3>
+                    <p>{{ result.question }}</p>
+                    <div class="answer user-answer">
+                        Your answer: {{ result.user_answer }}
+                    </div>
+                    <div class="answer correct-answer">
+                        Correct answer: {{ result.correct_answer }}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        
+        <a href="/" class="btn">Start New Test</a>
+    </div>
+</body>
+</html>
