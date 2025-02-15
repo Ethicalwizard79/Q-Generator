@@ -18,6 +18,7 @@ pip install -r requirements.txt
 ```bash
 running applications:
 python app.py
+```
 ```bash
 cd fastapi-app
 python api.py
