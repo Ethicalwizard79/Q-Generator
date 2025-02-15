@@ -1,5 +1,5 @@
 # app.py
-from flask import Flask, render_template, request, session, redirect, url_for
+from flask import Flask, render_template, request, session, redirect, url_for, make_response 
 import groq
 import re
 
@@ -8,7 +8,7 @@ app.secret_key = 'your-secret-key-123'  # Change for production
 app.static_folder = 'static'
 
 # Initialize Groq Client
-groq_client = groq.Client(api_key="YOUR_GROQ_API_KEY")
+groq_client = groq.Client(api_key="YOUR_API_KEY")
 
 def generate_mcq(category, difficulty, num_questions):
     prompt = f"""SYSTEM ROLE: You are a strict multiple-choice question generator with exceptional technical accuracy. 
@@ -158,6 +158,53 @@ def show_results():
         results=results,
         missed_questions=missed_questions
     )
+
+# New download route
+@app.route('/download-questions')
+def download_questions():
+    if not session.get('submitted'):
+        return redirect(url_for('index'))
+    
+    import json
+    from datetime import datetime
+    
+    # Create filename based on test parameters and current time
+    timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+    filename = f"{session['category']}-{session['difficulty']}-{session['num_questions']}-{timestamp}.json"
+    
+    # Prepare JSON data structure
+    json_data = {
+        'test_info': {
+            'category': session['category'],
+            'difficulty': session['difficulty'],
+            'num_questions': session['num_questions'],
+            'timestamp': timestamp
+        },
+        'questions': []
+    }
+    
+    # Add each question with its details
+    for i, question in enumerate(session['questions']):
+        question_data = {
+            'question_number': i + 1,
+            'question_text': question['question'],
+            'options': {
+                'a': question['options'][0],
+                'b': question['options'][1],
+                'c': question['options'][2],
+                'd': question['options'][3]
+            },
+            'correct_answer': question['answer'],
+            'user_answer': session['answers'].get(str(i), "Not answered")
+        }
+        json_data['questions'].append(question_data)
+    
+    # Create the response with JSON data
+    response = make_response(json.dumps(json_data, indent=2))
+    response.headers['Content-Type'] = 'application/json'
+    response.headers['Content-Disposition'] = f'attachment; filename={filename}'
+    
+    return response
 
 if __name__ == '__main__':
     app.run(debug=True)
