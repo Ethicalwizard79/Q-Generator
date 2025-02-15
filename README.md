@@ -10,6 +10,7 @@ A combined Flask web application and FastAPI service for generating and managing
 
 ```bash
 #IN Q-Generator Directory itself
+
 pip install -r requirements.txt
 
 cd ../fastapi-app
@@ -17,6 +18,8 @@ pip install -r requirements.txt
 ```
 ```bash
 running applications:
+
+#IN Q-Generator Directory itself
 python app.py
 ```
 ```bash
