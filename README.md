@@ -9,7 +9,6 @@ A combined Flask web application and FastAPI service for generating and managing
 3. Install dependencies:
 
 ```bash
-cd flask-app
 pip install -r requirements.txt
 
 cd ../fastapi-app
@@ -17,7 +16,6 @@ pip install -r requirements.txt
 
 
 running applications:
-cd flask-app
 python app.py
 
 cd fastapi-app
