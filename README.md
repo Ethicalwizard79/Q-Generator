@@ -17,7 +17,7 @@ cd ../fastapi-app
 pip install -r requirements.txt
 ```
 ```bash
-running applications:
+##Running Applications:
 
 #IN Q-Generator Directory itself
 python app.py
@@ -27,7 +27,7 @@ cd fastapi-app
 python api.py
 
 
-Access Applications
+##Access Applications
 
     Flask Web Interface: http://localhost:5000
 
